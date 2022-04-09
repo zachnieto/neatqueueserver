@@ -8,7 +8,7 @@ import env from 'custom-env'
 env.env('dev')
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: process.env.REACT_APP
 }));
 app.use(express.json());
 
