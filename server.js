@@ -16,14 +16,18 @@ let sess = {
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: {
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 48,
+        sameSite: 'none'
+    }
 };
 
 if (process.env.APP_ENV === 'dev') {
-    app.set('trust proxy', 1)
     sess.cookie.secure = false;
 }
 
+app.set('trust proxy', 1)
 app.use(session(sess));
 
 pingController(app)
